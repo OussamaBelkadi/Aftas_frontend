@@ -1,0 +1,267 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+
+<lib-toastify-toast-container></lib-toastify-toast-container>
+<div class="relative">
+
+  <div class="flex gap-2 ml-96 mt-40">
+    <a class="fas fa-feather text-2xl text-blue-700" data-modal-target="competition-modal" data-modal-toggle="competition-modal"  ></a>
+    <a class="fas fa-bullseye text-2xl text-red-700" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"></a>
+    <a class="fas fa-add text-2xl text-green-700" data-modal-target="memberCompetition-modal" data-modal-toggle="memberCompetition-modal" (click)="getAllMember()"></a>
+
+  </div>
+
+<!--  <button data-modal-target="memberCompetition-modal" data-modal-toggle="memberCompetition-modal" class="block ml-20 mt-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">-->
+<!--    Related Member-->
+<!--  </button>-->
+  <div id="memberCompetition-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Add new Member to Competition
+          </h3>
+          <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="memberCompetition-modal">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <div class="p-4 md:p-5">
+          <form class="max-w-md mx-auto" [formGroup]="competitionMember" (ngSubmit)="subMemberToCompetion()">
+
+            <div class="mb-4">
+              <label for="competitionId" class="block text-gray-700 text-sm font-bold mb-2">Identity Document:</label>
+              <select formControlName="competitionId" id="competitionId" name="competitionId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option >Select the competition</option>
+                <option *ngFor="let competition of competitions" value="{{competition.id}}">{{competition.code}}</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label for="memberId" class="block text-gray-700 text-sm font-bold mb-2">Identity Document:</label>
+              <select formControlName="memberId" id="memberId" name="competitionId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option >Select Member</option>
+                <option *ngFor="let member of members" value="{{member.num}}">{{member.name}}</option>
+              </select>
+            </div>
+            <button type="submit" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-hide="memberCompetition-modal">
+              Submit
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--  <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block ml-20 mt-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">-->
+<!--    Add Member-->
+<!--  </button>-->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Add Member
+            </h3>
+            <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5">
+            <form class="max-w-md mx-auto" [formGroup]="memberForm" (ngSubmit)="createMember()">
+
+              <div class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                <input type="text" formControlName="name" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              </div>
+              <div class="mb-4">
+                <label for="familyName" class="block text-gray-700 text-sm font-bold mb-2">Family Name:</label>
+                <input type="text" formControlName="familyName" id="familyName" name="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              </div>
+
+
+              <div class="mb-4">
+                <label for="identityDocumentType" class="block text-gray-700 text-sm font-bold mb-2">Identity Document:</label>
+                <select formControlName="identityDocumentType" id="identityDocumentType" name="identityDocumentType" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option>CIN</option>
+                  <option>CARTE_RESIDENCE</option>
+                  <option>PASSPORT</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label for="identityNumber" class="block text-gray-700 text-sm font-bold mb-2">Identity Number:</label>
+                <input type="text" formControlName="identityNumber" id="identityNumber" name="identityNumber" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              </div>
+
+              <div class="mb-4">
+                <label for="nationality" class="block text-gray-700 text-sm font-bold mb-2">Nationality:</label>
+                <select formControlName="nationality" id="nationality" name="identityDocumentType" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option>Maroc</option>
+                  <option>Espaign</option>
+                  <option>Protogal</option>
+                </select>
+              </div>
+              <button type="submit" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-hide="authentication-modal">
+                Submit
+              </button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Modal toggle -->
+<!--  <button data-modal-target="competition-modal" data-modal-toggle="competition-modal" class="block ml-96 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">-->
+<!--    Add competition-->
+<!--  </button>-->
+
+  <!-- Main modal -->
+  <div id="competition-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Add new competition
+          </h3>
+          <button type="button" class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="competition-modal">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-4 md:p-5">
+          <form class="max-w-md mx-auto" [formGroup]="competitionForm" (ngSubmit)="createCompetition()">
+
+            <div class="mb-4">
+              <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+              <input type="date" formControlName="date" id="date" name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+            </div>
+            <div class="mb-4">
+              <label for="startTime" class="block text-gray-700 text-sm font-bold mb-2">Start Time:</label>
+              <input type="time" formControlName="startTime" id="startTime" name="startTime" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+              <label for="endTime" class="block text-gray-700 text-sm font-bold mb-2">End Time:</label>
+              <input type="time" formControlName="endTime" id="endTime" name="endTime" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+              <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location:</label>
+              <input type="text" formControlName="location" id="location" name="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+
+            <div class="mb-4">
+              <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount:</label>
+              <input type="number" formControlName="amount" id="amount" name="amount" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+            </div>
+
+            <button type="submit" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-hide="competition-modal">
+              Submit
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative overflow-x-auto w-[1400px] mt-4 ml-96 shadow-md sm:rounded-lg h-full">
+
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase border bg-gray-50 bg-white text-gray-400 border">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        Competition
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Code
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Date start
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Start Time
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Number Participants
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Location
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Status
+      </th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="bg-white border-b dark:bg-white border-gray-700 " *ngFor="let competition of competitions">
+      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+        {{competition.id}}
+      </th>
+      <td class="px-6 py-4">
+        {{competition.code}}
+      </td>
+      <td class="px-6 py-4">
+        {{competition.date | date}}
+      </td>
+      <td class="px-6 py-4">
+        {{competition.startTime }}
+      </td>
+
+      <td class="px-6 py-4">
+        {{competition.numberOfParticipants}}
+      </td>
+      <td class="px-6 py-4">
+        {{competition.location}}
+      </td>
+      <td class="px-6 py-1">
+        <p [ngClass]="competition.status=='in waiting'?'px-4 pt-2 rounded-2xl border-green-700 bg-red-600 text-white h-10': 'px-6 py-2 rounded-2xl border-green-700 text-white bg-green-600'">{{competition.status}}</p>
+      </td>
+      <td class="px-16 py-4 text-right" (click)="startCompetition(competition)">
+        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Start</a>
+      </td>
+      <td class="px-16 py-4 text-right" >
+        <a [ngClass]="competition.status=='in waiting'?'hidden':'border-green-700'" [routerLink]="['/competition', competition.id]" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">content</a>
+      </td>
+    </tr>
+
+
+    </tbody>
+  </table>
+
+  </div>
+  <div class="flex items-center justify-center mt-4">
+    <button (click)="prevPage()"
+            [disabled]="currentPage === 0"
+            class="px-3 py-1 rounded-md mr-2 bg-gray-200 text-gray-600 hover:bg-gray-300 disabled:opacity-50"
+    >
+      Previous
+    </button>
+    <span class="text-gray-600">Page {{ currentPage + 1 }}</span>
+    <button (click)="nextPage()"
+            class="px-3 py-1 rounded-md ml-2 bg-gray-200 text-gray-600 hover:bg-gray-300 disabled:opacity-50"
+    >
+      Next
+    </button>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
