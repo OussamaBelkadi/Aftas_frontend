@@ -20,6 +20,8 @@ import { SignupAdminComponent } from './pages/signup-admin/signup-admin.componen
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { ValidateAccountComponent } from './pages/admin/validate-account/validate-account.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { FlowCompetitionComponent } from './pages/flow-competition/flow-competition.component';
+import { SubscriptionCompetitionsComponent } from './pages/subscription-competitions/subscription-competitions.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     SignupAdminComponent,
     LoginAdminComponent,
     ValidateAccountComponent,
+    FlowCompetitionComponent,
+    SubscriptionCompetitionsComponent,
   ],
     imports: [
         BrowserModule,

@@ -19,9 +19,19 @@ export class CompetitionDashbordComponent implements OnInit{
   competitionMember: any;
   competitionId!: number;
   id!:number;
-  top3Members: any[] = [];
+  top3Members!: any[];
   constructor(private competitionService: CompetitionServiceService, private memberService: MemberServiceService, private route: ActivatedRoute, private _toastService: ToastService, private form:FormBuilder) {
     this.initForm()
+  }
+
+  ngOnInit() {
+    this.getUserId(localStorage.getItem("userId"));
+    this.getFish();
+    this.route.params.subscribe(params => {
+      this.competitionId = parseInt(params['competitionId']);
+      this.getCompetitionDetails(this.competitionId);
+      this.getRanking(this.competitionId);
+    });
   }
 
   initForm(){
@@ -63,15 +73,7 @@ export class CompetitionDashbordComponent implements OnInit{
 
     })
   }
-  ngOnInit() {
-    this.getUserId(localStorage.getItem("userId"));
-    this.getFish();
-    this.route.params.subscribe(params => {
-      this.competitionId = parseInt(params['competitionId']);
-      this.getCompetitionDetails(this.competitionId);
-      this.getRanking(this.competitionId);
-    });
-  }
+  
   getUserId(id: string | null){
     if(id != null){
       this.userId = +id;

@@ -30,30 +30,32 @@ export class DashbordAdminComponent implements OnInit{
   constructor(private competitionService:CompetitionServiceService, private memberService:MemberServiceService, private formBuilder: FormBuilder, private _toastService: ToastService) {
     this.createForm();
    }
-createForm() {
 
-  this.competitionForm = this.formBuilder.group({
-    date: ['', Validators.required],
-    startTime: ['', Validators.required],
-    endTime: ['', Validators.required],
-    location: ['', Validators.required],
-    amount: ['', Validators.required],
-  });
-  this.memberForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    familyName: ['', Validators.required],
-    identityDocumentType: ['', Validators.required],
-    identityNumber: ['', Validators.required],
-    nationality: ['', Validators.required],
-  });
-  this.competitionMember = this.formBuilder.group({
-    competitionId: [''],
-    memberId: [''],
-  })
-}
   ngOnInit() {
     this.loadCompetitions();
     this.getAllMember();
+  }
+
+  createForm() {
+
+    this.competitionForm = this.formBuilder.group({
+      date: ['', Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
+      location: ['', Validators.required],
+      amount: ['', Validators.required],
+    });
+    this.memberForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      familyName: ['', Validators.required],
+      identityDocumentType: ['', Validators.required],
+      identityNumber: ['', Validators.required],
+      nationality: ['', Validators.required],
+    });
+    this.competitionMember = this.formBuilder.group({
+      competitionId: [''],
+      memberId: [''],
+    })
   }
 
    generateCode(location: string, date: string): string {
@@ -105,11 +107,16 @@ createForm() {
     };
       this.competitionService.createCompetition(competitionFormData).subscribe({
         next: response => {
+
           this.competitionForm.reset();
+          this._toastService.success(response);
+          this.loadCompetitions();
+
         },
         error: err => {
           this.competitionForm.reset();
-          this._toastService.success(err.error.text)
+          this._toastService.error(err.error)
+          this.loadCompetitions();
         }
       });
   }
@@ -145,6 +152,8 @@ createForm() {
       }
     })
   }
+
+
   getAllCompetition(){
     this.competitionService.getAllCompetitions().subscribe({
         next: response => {
@@ -153,6 +162,7 @@ createForm() {
       }
     )
   }
+
   loadCompetitions(): void {
     this.competitionService.pageCompetition(this.currentPage, this.pageSize).subscribe((response) => {
       console.log(response)

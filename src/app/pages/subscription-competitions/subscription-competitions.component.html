@@ -1,0 +1,135 @@
+<lib-toastify-toast-container></lib-toastify-toast-container>
+<div class="container mx-auto ">
+
+
+<table class="w-full text-sm text-left rtl:text-right text-gray-500 text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase border bg-gray-50 bg-white text-gray-400 border">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        Name
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Code
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Date start
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Start Time
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Number Participants
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Location
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Status
+      </th>
+
+
+    </tr>
+    </thead>
+  
+    <tbody>
+    <tr class="bg-white border-b dark:bg-white border-gray-700 " *ngFor="let competition of competitions">
+      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+        {{competition.id}}
+      </th>
+      <td class="px-6 py-4">
+        {{competition.code}}
+      </td>
+      <td class="px-6 py-4">
+        {{competition.date | date}}
+      </td>
+      <td class="px-6 py-4">
+        {{competition.startTime }}
+      </td>
+
+      <td class="px-6 py-4">
+        {{competition.numberOfParticipants}}
+      </td>
+      <td class="px-6 py-4">
+        {{competition.location}}
+      </td>
+      <td class="px-6 py-1">
+        <p [ngClass]="competition.status=='in waiting'?'px-4 pt-2 rounded-2xl border-green-700 bg-red-600 text-white h-10': 'px-6 py-2 rounded-2xl border-green-700 text-white bg-green-600'">{{competition.status}}</p>
+      </td>
+      <td class="px-16 py-4 text-right" >
+        <button data-modal-target="large-modal" (click)="getRanking()" data-modal-toggle="large-modal" class="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            Large modal
+        </button>
+      </td>
+      
+    </tr>
+
+
+    </tbody>
+  </table>
+
+
+  <div id="large-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full">
+        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"> 
+
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase border bg-gray-50 bg-white text-gray-400 border">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Code Competition
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Date start
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Start Time
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Location              
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Score
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Status
+              </th>
+        
+        
+            </tr>
+            </thead>
+            <tbody *ngFor="let member of topMembers" class="bg-white">
+                <th scope="col" class="px-6 py-3">
+                    {{ member.user.name }}
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{ member.competition.code }}
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{ member.competition.date | date}} 
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{ member.competition.startTime }}
+                    
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{ member.competition.location }}
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{ member.score }}
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{ member.competition.status }}
+                  </th>
+               
+            </tbody>
+
+        </table>
+        </div>
+    
+    
+    </div>
+</div>
+</div>

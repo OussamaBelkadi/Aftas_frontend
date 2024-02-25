@@ -7,12 +7,17 @@ import { SingupComponent } from './pages/singup/singup.component';
 import { SignupAdminComponent } from './pages/signup-admin/signup-admin.component';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { ValidateAccountComponent } from './pages/admin/validate-account/validate-account.component';
+import { FlowCompetitionComponent } from './pages/flow-competition/flow-competition.component';
+import { SubscriptionCompetitionsComponent } from './pages/subscription-competitions/subscription-competitions.component';
 
 const routes: Routes = [
   {path: 'admin/signup', component: SignupAdminComponent},
   {path: 'admin/login', component: LoginAdminComponent},
   {path: 'user/login', component: LoginComponent},
   {path: 'user/signup', component: SingupComponent},
+  {path: 'user/competitions', component: FlowCompetitionComponent},
+  {path: 'user/subscriptions', component: SubscriptionCompetitionsComponent},
+
   {path: '', component: DashbordAdminComponent},
   {path: 'admin/validation', component: ValidateAccountComponent},
   {path: 'competition/:competitionId', component: CompetitionDashbordComponent}
