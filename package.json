@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.10",
-    "@angular/cli": "~15.2.10",
+    "@angular/cli": "^15.2.10",
     "@angular/compiler-cli": "^15.2.0",
     "@types/jasmine": "~4.3.0",
     "@types/toastify-js": "^1.12.3",

@@ -38,8 +38,8 @@ export class LoginAdminComponent implements OnInit{
         this.service.loginAdmin(this.loginRequest).subscribe((data : any)=>{
           this.toast.success("Login success");
           localStorage.setItem("token", data.token);
-          localStorage.removeItem("admId");
-          localStorage.setItem("admId", data.id)
+          localStorage.removeItem("userId");
+          localStorage.setItem("userId", data.id)
           this.route.navigate(['admin/validation'])
         },(err)=>{
           this.toast.error("Verify the credential data is invalid");

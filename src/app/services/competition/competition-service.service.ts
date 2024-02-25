@@ -17,21 +17,26 @@ apiUrl:string = "http://localhost:8080/api/v1";
   getAllCompetitions(){
     return this.http.get(`${this.apiUrl}/competitions`);
   }
+
   pageCompetition(currentPage:number, pageSize: number) {
     return this.http.get<any>(`${this.apiUrl}/competitions?page=${currentPage}&size=${pageSize}`)
   }
+
   createCompetition(competitionData: any): Observable<any> {
     const url = `${this.apiUrl}/competitions/create`;
     return this.http.post<any>(url, competitionData);
   }
+
   addMemberToCompetition(competitionId:number,memberId:number):Observable<any>{
     const url = `${this.apiUrl}/member/${competitionId}/register/${memberId}`
     return this.http.post(url,competitionId)
   }
+
   getAllMember(){
     const url = `${this.apiUrl}/member`;
     return this.http.get(url);
   }
+
   startCompetition(content:any){
     return this.http.post(`${this.apiUrl}/competitions/start`, content)
   }
@@ -40,7 +45,8 @@ apiUrl:string = "http://localhost:8080/api/v1";
     return this.http.get(`${this.apiUrl}/member/${id}`)
 
   }
-  getTop3Members(competitionId: number): Observable<any> {
+  
+  getTop3Members(competitionId: number | null): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/competitions/ranking/${competitionId}`);
   }
 }

@@ -14,6 +14,7 @@ import {catchError, throwError} from "rxjs";
 export class CompetitionDashbordComponent implements OnInit{
   huntingForm!: any;
   responseFishs!: any;
+  userId!: number | null; 
   competitionDetails: any;
   competitionMember: any;
   competitionId!: number;
@@ -45,31 +46,25 @@ export class CompetitionDashbordComponent implements OnInit{
     const formData = this.huntingForm.value;
     const huntingDto = {
       "fishId": formData.fishId,
-      "memberId": formData.member,
+      "userId": formData.member,
       "weight": formData.weight
     }
+    
     this.memberService.addHunting(huntingDto, code).subscribe({
       next: value => {
-
-        this._toastService.success('value.text')
-
+        this._toastService.success(value);
+        this.getRanking(this.competitionId);
+        this.huntingForm.reset();
       },
       error: err =>  {
-        if (err.error == 'the fish is not in average weight !'){
-          this._toastService.error(err.error);
-          this.getRanking(this.competitionId);
-
-
-        }else {
-          this._toastService.success('the hunting added successfully');
-          this.getRanking(this.competitionId);
-
-        }
+        this._toastService.error(err.error)
+        this.huntingForm.reset()        
       }
 
     })
   }
   ngOnInit() {
+    this.getUserId(localStorage.getItem("userId"));
     this.getFish();
     this.route.params.subscribe(params => {
       this.competitionId = parseInt(params['competitionId']);
@@ -77,17 +72,28 @@ export class CompetitionDashbordComponent implements OnInit{
       this.getRanking(this.competitionId);
     });
   }
+  getUserId(id: string | null){
+    if(id != null){
+      this.userId = +id;
+    }
+  }
   getCompetitionDetails(id: number){
     this.competitionService.competitionDetails(id).subscribe({ next: value => {
         this.competitionDetails = value.competitionDto
         this.competitionMember = value.memberDtoList;
+        console.log(this.competitionMember);
+        
       }
     });
   }
 
   getRanking(competitionId:number){
-    this.competitionService.getTop3Members(competitionId).subscribe(response => {
+    console.log("err");
+    
+    this.competitionService.getTop3Members(this.competitionId).subscribe(response => {
       this.top3Members = response;
+      console.log(this.top3Members);
+      
     });
   }
 }

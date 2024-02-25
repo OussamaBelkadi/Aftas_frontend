@@ -15,8 +15,8 @@ export class MemberServiceService {
     return this.http.post<any>(url, competitionData);
   }
   addHunting(hunting: any, code: string):Observable<any>{
-    const url = `${this.apiUrl}/competition/huting/${code}`;
-    return this.http.post<any>(url, hunting)
+    const url = `${this.apiUrl}/competition/hunting/${code}`;
+    return this.http.post(url, hunting, {responseType: "text"})
 
   }
   getFish(){

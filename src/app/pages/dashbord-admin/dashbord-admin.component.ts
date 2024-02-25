@@ -137,8 +137,11 @@ createForm() {
   }
   getAllMember(){
     this.competitionService.getAllMember().subscribe({
+     
+      
       next: response=>{
         this.members = response
+        console.log(response);
       }
     })
   }

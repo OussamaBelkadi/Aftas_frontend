@@ -73,7 +73,7 @@
             <label for="member" class="block text-gray-700 text-sm font-bold mb-2">Member:</label>
             <select id="member" name="member" formControlName="member" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
               <option selected>Select member</option>
-              <option *ngFor="let row of competitionMember" [ngValue]="row.num">{{row.name}}</option>
+              <option *ngFor="let row of competitionMember" [ngValue]="row.id">{{row.name}}</option>
             </select>
           </div>
 
@@ -139,38 +139,39 @@
 
 <div class="flex justify-center items-end space-x-4">
   <!-- Third Place -->
-  <div class="bg-gray-200 rounded-lg p-6 shadow-lg w-32">
-    <h2 class="text-2xl font-bold text-gray-800">{{ top3Members[2]?.member.name }}</h2>
-    <p class="text-lg text-gray-600">{{ top3Members[2]?.member.familyName }}</p>
+  <div class="bg-gray-300 rounded-lg p-6 shadow-lg w-36 ">
+    <h1> &numero;  3</h1>
+    <h2 class="text-2xl font-bold text-gray-800">{{ top3Members[2]?.user.name }}</h2>
+    <!-- <p class="text-lg text-gray-600">{{ top3Members[2]?.member.familyName }}</p> -->
     <p class="text-lg font-semibold mt-2">Score: {{ top3Members[2]?.score }}</p>
   </div>
 
   <!-- Second Place -->
-  <div class="bg-yellow-400 rounded-lg p-8 shadow-lg w-48">
-    <h2 class="text-3xl font-bold text-yellow-900">{{ top3Members[1]?.member.name }}</h2>
-    <p class="text-lg text-yellow-700">{{ top3Members[1]?.member.familyName }}</p>
+  <div class="bg-yellow-100 rounded-lg p-8 shadow-lg w-48">
+    <h1> &numero;  2</h1>
+    <h2 class="text-3xl font-bold text-yellow-900">{{ top3Members[1]?.user.name }}</h2>
+    <!-- <p class="text-lg text-yellow-700">{{ top3Members[1]?.member.familyName }}</p> -->
     <p class="text-lg font-semibold mt-2">Score: {{ top3Members[1]?.score }}</p>
   </div>
 
   <!-- First Place -->
-  <div class="bg-gold-500 rounded-lg p-12 shadow-lg w-64">
-    <h2 class="text-4xl font-bold text-gold-900">{{ top3Members[0]?.member.name }}</h2>
-    <p class="text-lg text-gold-800">{{ top3Members[0]?.member.familyName }}</p>
+  <div class="bg-amber-400 rounded-lg p-12 shadow-lg w-64">
+    <h1> &numero;  1</h1>
+    <h2 class="text-4xl font-bold text-gold-900">{{ top3Members[0]?.user.name }}</h2>
+    <!-- <p class="text-lg text-gold-800">{{ top3Members[0]?.member.familyName }}</p> -->
     <p class="text-lg font-semibold mt-2">Score: {{ top3Members[0]?.score }}</p>
   </div>
 </div>
 </div>
 
-<!--<div class="flex justify-center items-center">-->
-<!--  <div *ngFor="let member of top3Members" class="p-4">-->
-<!--    &lt;!&ndash; Customize the design using Tailwind CSS classes &ndash;&gt;-->
-<!--    <div class="bg-gray-200 rounded-lg p-4">-->
-<!--      <h2 class="text-lg font-bold">{{ member.member.name }}</h2>-->
-<!--      <p class="text-sm">{{ member.member.familyName }}</p>-->
-<!--      <p class="text-sm">Score: {{ member.score }}</p>-->
-<!--      &lt;!&ndash; Add other member details as needed &ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!-- <div class="flex justify-center items-center">
+  <div *ngFor="let member of top3Members" class="p-4">
+    <div class="bg-gray-200 rounded-lg p-4">
+      <h2 class="text-lg font-bold">{{ member.user.name }}</h2>
+    
+     <p class="text-sm">Score: {{ member.score }}</p>
+    </div>
+  </div>
+</div> -->
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
